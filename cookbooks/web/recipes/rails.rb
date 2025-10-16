@@ -44,6 +44,7 @@ nodejs_package "svgo"
 rails_directory = "#{node[:web][:base_directory]}/rails"
 
 matomo = data_bag_item("web", "matomo")
+spam_phrases = data_bag_item("web", "spam_phrases")
 
 aws_access_key_id = "AKIASQUXHPE7AMJQRFOS"
 aws_secret_access_key = web_passwords["aws_keys"][aws_access_key_id]
@@ -122,6 +123,7 @@ rails_port "www.openstreetmap.org" do
                        "referral_cookie_timeout" => matomo[:referral_cookie_timeout],
                        "session_cookie_timeout" => matomo[:session_cookie_timeout],
                        "goals" => matomo[:goals].to_hash
+  spam_phrases spam_phrases
   google_auth_id "651529786092-6c5ahcu0tpp95emiec8uibg11asmk34t.apps.googleusercontent.com"
   google_auth_secret web_passwords["google_auth_secret"]
   google_openid_realm "https://www.openstreetmap.org"
